@@ -2,6 +2,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,13 +25,22 @@ public class BaseClass {
     @BeforeMethod
     public void BeforeMethod(@Optional("chrome") String browser){
        // System.out.println("**Esto corre 2 veces");
-        WebDriverManager.chromedriver().setup();
-        WebDriverManager.firefoxdriver().setup();
-        if (browser.equals("firefox"))
-            driver = new FirefoxDriver();
-        else
-            driver = new ChromeDriver();
 
+        switch (browser){
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            case "IE":
+                WebDriverManager.iedriver().setup();
+                driver = new InternetExplorerDriver();
+                break;
+            default:
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+        }
+        driver.manage().window().maximize();
         driver.get("https://demo.opencart.com/");
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }

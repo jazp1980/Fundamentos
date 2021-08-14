@@ -7,10 +7,12 @@
             <class name="TestAccount" />
         </classes>
     </test>
-    <test name="Login Tests - FireFox" >
-        <parameter name="browser" value="firefox"></parameter>
+    <test name="Search Tests - Firefox">
+        <parameter name="browser" value="firefox"/>
+        <parameter name="searchCriteria" value="iphone"/>
+        <parameter name="expectedResult" value="1"></parameter>
         <classes>
-            <class name="TestAccount" />
+            <class name="TestSearch"/>
         </classes>
     </test>
 </suite>
