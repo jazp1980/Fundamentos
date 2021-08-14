@@ -2,11 +2,13 @@
 
 <suite name="Account Tests">
     <test name="Login Tests - Chrome" >
+        <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="TestAccount" />
         </classes>
     </test>
     <test name="Login Tests - FireFox" >
+        <parameter name="browser" value="firefox"></parameter>
         <classes>
             <class name="TestAccount" />
         </classes>
