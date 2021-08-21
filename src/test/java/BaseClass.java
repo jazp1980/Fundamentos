@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,16 +17,10 @@ public class BaseClass {
 
     protected WebDriver driver;
 
-    @BeforeTest
-    public  void BeforeTest()
-    {
-      // System.out.println("*Esto corre 1 vez");
-    }
-
     @Parameters({"browser"})
     @BeforeMethod
-    public void BeforeMethod(@Optional("chrome") String browser){
-       // System.out.println("**Esto corre 2 veces");
+    public void BeforeMethod(@Optional("chrome") String browser) throws InterruptedException {
+
 
         switch (browser){
             case "firefox":
@@ -44,10 +40,7 @@ public class BaseClass {
         driver.get("https://demo.opencart.com/");
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
-    @AfterTest
-    public void AfterTest(){
 
-    }
 
     @AfterMethod
     public void AfterMethod(){
