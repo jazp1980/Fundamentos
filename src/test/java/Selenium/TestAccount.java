@@ -1,20 +1,19 @@
-import PageObjects.HeaderPage;
-import PageObjects.LoginPage;
-import PageObjects.RegisterPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Attachment;
+package Selenium;
+
+import PageObjects.*;
 import io.qameta.allure.Description;
+import net.bytebuddy.utility.RandomString;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.sql.Driver;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+import java.nio.charset.Charset;
+import java.sql.Array;
 
-public class TestAccount extends BaseClass{
+public class TestAccount extends BaseClass {
 
+
+    private Object RandomString;
 
     @Description("Validate login succesful")
     @Test
@@ -74,7 +73,7 @@ public class TestAccount extends BaseClass{
         //SETUP
         String firstName = "Jorge";
         String lastName = "Zamora";
-        String email = "jazp@gmail.com";
+        String email = "juangomez@gmail.com";
         String telephone = "11111";
         String password = "1234";
         String expectedMessage = "Your Account Has Been Created!";
@@ -86,6 +85,24 @@ public class TestAccount extends BaseClass{
 
         //VALIDATION
         Assert.assertEquals(registerPage.GetConfirmationMessage(), expectedMessage);
+    }
+
+    @Test
+    public void Test_Create_New_Account_Project(){
+        //SETUP
+        String firstName = "Jorge";
+        String lastName = "Zamora";
+        String email = RegisterPageProject.cadenaAleatoria(6).toString();
+        System.out.println(email);
+        String telephone = "334334";
+        String password = "abcd";
+        String expectedMessage = "Your Account Has Been Created!";
+        RegisterPageProject registerPageProject = new RegisterPageProject(driver);
+
+        registerPageProject.GoTo();
+        registerPageProject.FillForm(firstName, lastName, email, telephone, password);
+        Assert.assertEquals(registerPageProject.GetConfirmationMessage(), expectedMessage);
+        registerPageProject.UserValidate();
     }
 
 }

@@ -1,3 +1,5 @@
+package PageObjects;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
@@ -42,7 +44,7 @@ public class BaseClass {
     }
 
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void AfterMethod(){
         TakeScreenshot();
         driver.close();

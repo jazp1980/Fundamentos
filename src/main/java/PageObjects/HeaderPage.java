@@ -10,6 +10,7 @@ public class HeaderPage {
     private By myAccountLinkLocator = By.xpath("//*[@id=\"top-links\"]/ul/li[2]/a/span[1]");
     private By loginButtonLocator = By.linkText("Login");
     private By registerButtonLocator = By.linkText("Register");
+    private By LogoutButtonLocator = By.xpath("//*[@id=\"top-links\"]/ul/li[2]/ul/li[5]/a");
 
     public HeaderPage(WebDriver _driver){
         this.driver = _driver;
@@ -24,5 +25,6 @@ public class HeaderPage {
     public void clickOnRegisterButton(){
         driver.findElement(registerButtonLocator).click();
     }
+    public void validateLogoutButton() {driver.findElement(LogoutButtonLocator);}
 }
 
